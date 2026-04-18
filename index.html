@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bermuda — Tech House · Denver</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold:       #C9923A;
+    --amber:      #E8B86D;
+    --sand:       #D4B896;
+    --dusk:       #1A0F0A;
+    --deep:       #0D0705;
+    --smoke:      #2E1F15;
+    --warm-white: #F5EDE0;
+    --muted:      #8A7060;
+    --teal:       #3ECFCF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--deep);
+    color: var(--warm-white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.5;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 48px;
+    background: linear-gradient(to bottom, rgba(13,7,5,0.9), transparent);
+  }
+
+  .nav-wordmark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 8px;
+    color: var(--warm-white);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 80px 40px;
+    text-align: center;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,146,58,0.15) 0%, rgba(201,146,58,0.04) 50%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 7s ease-in-out infinite;
+  }
+
+  .hero-glow-teal {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(62,207,207,0.06) 0%, transparent 70%);
+    bottom: 20%; right: 15%;
+    animation: pulse 9s ease-in-out infinite reverse;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+    50% { transform: translate(-50%, -50%) scale(1.12); opacity: 1; }
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 7px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.2s;
+    position: relative;
+  }
+
+  .hero-wordmark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 14vw, 160px);
+    letter-spacing: 20px;
+    color: var(--warm-white);
+    line-height: 1;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.4s;
+    position: relative;
+  }
+
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 26px);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--sand);
+    letter-spacing: 3px;
+    margin-top: 24px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.6s;
+    position: relative;
+  }
+
+  .hero-divider {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    margin: 56px auto 0;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.9s;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ABOUT */
+  .about {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 120px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-label {
+    font-size: 10px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .about-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 5vw, 72px);
+    letter-spacing: 4px;
+    color: var(--warm-white);
+    line-height: 1;
+    margin-bottom: 32px;
+  }
+
+  .about-body {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--sand);
+    font-weight: 300;
+  }
+
+  .about-body p + p { margin-top: 20px; }
+
+  .about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .stat-row {
+    background: var(--dusk);
+    border-left: 2px solid var(--gold);
+    padding: 28px 32px;
+    transition: background 0.3s;
+  }
+
+  .stat-row:hover { background: var(--smoke); }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    letter-spacing: 3px;
+    color: var(--amber);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* SOUND */
+  .sound {
+    background: var(--dusk);
+    padding: 120px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sound::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    opacity: 0.3;
+  }
+
+  .sound::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    opacity: 0.3;
+  }
+
+  .sound-inner { max-width: 700px; margin: 0 auto; position: relative; }
+
+  .sound-label {
+    font-size: 10px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 20px;
+  }
+
+  .sound-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    letter-spacing: 6px;
+    color: var(--warm-white);
+    line-height: 1;
+    margin-bottom: 32px;
+  }
+
+  .sound-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2vw, 22px);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--sand);
+    line-height: 1.7;
+    letter-spacing: 0.5px;
+  }
+
+  .sound-tags {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 48px;
+  }
+
+  .tag {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,146,58,0.3);
+    padding: 8px 20px;
+  }
+
+  /* BOOKING */
+  .booking {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 140px 48px;
+    text-align: center;
+  }
+
+  .booking-label {
+    font-size: 10px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .booking-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 8vw, 104px);
+    letter-spacing: 8px;
+    color: var(--warm-white);
+    line-height: 1;
+    margin-bottom: 32px;
+  }
+
+  .booking-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--sand);
+    margin-bottom: 56px;
+    letter-spacing: 1px;
+  }
+
+  .booking-email {
+    display: inline-block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 6px;
+    color: var(--deep);
+    background: var(--gold);
+    padding: 20px 56px;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .booking-email:hover {
+    background: var(--amber);
+    transform: translateY(-2px);
+  }
+
+  .booking-note {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 32px;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(201,146,58,0.15);
+    padding: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .footer-wordmark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 8px;
+    color: var(--muted);
+  }
+
+  .footer-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 28px;
+  }
+
+  .footer-links a {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .about { grid-template-columns: 1fr; gap: 48px; padding: 80px 24px; }
+    .sound { padding: 80px 24px; }
+    .booking { padding: 80px 24px; }
+    footer { flex-direction: column; gap: 24px; text-align: center; padding: 40px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-wordmark">BERMUDA</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#sound">Sound</a></li>
+    <li><a href="#booking">Book Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow-teal"></div>
+  <p class="hero-eyebrow">Tech House · Denver, CO</p>
+  <h1 class="hero-wordmark">BERMUDA</h1>
+  <p class="hero-tagline">Lost in the sound. Found on the floor.</p>
+  <div class="hero-divider"></div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div>
+    <p class="about-label">01 — Who We Are</p>
+    <h2 class="about-heading">THREE DJS.<br>ONE NAME.</h2>
+    <div class="about-body">
+      <p>Bermuda is a tech house trio based in Denver, Colorado. Named for the feeling of disappearing — the moment you stop checking your phone, stop watching the clock, and surrender entirely to the music.</p>
+      <p>Our sets live at the intersection of groove and euphoria: driving enough to keep you moving, warm enough to make you feel something.</p>
+      <p>We play clubs, festivals, and private events across Colorado and beyond. You went in for a quick drink. You left at 2am. You're welcome.</p>
+    </div>
+  </div>
+  <div class="about-stats">
+    <div class="stat-row">
+      <div class="stat-num">3</div>
+      <div class="stat-label">DJs, one sound</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-num">CO</div>
+      <div class="stat-label">Based in Denver</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Sets that ran long</div>
+    </div>
+  </div>
+</section>
+
+<!-- SOUND -->
+<section class="sound" id="sound">
+  <div class="sound-inner">
+    <p class="sound-label">02 — The Sound</p>
+    <h2 class="sound-heading">TECH HOUSE.<br>NO APOLOGIES.</h2>
+    <p class="sound-body">The set was supposed to be 90 minutes.<br>The crowd had other plans.</p>
+    <div class="sound-tags">
+      <span class="tag">Tech House</span>
+      <span class="tag">Deep House</span>
+      <span class="tag">Driving Grooves</span>
+      <span class="tag">High Energy</span>
+      <span class="tag">Open to Close</span>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+  <p class="booking-label">03 — Work With Us</p>
+  <h2 class="booking-heading">BOOK<br>BERMUDA</h2>
+  <p class="booking-sub">Clubs, festivals, private events — we keep dancefloors moving from open to close.</p>
+  <a href="mailto:bookbermuda@gmail.com" class="booking-email">BOOKBERMUDA@GMAIL.COM</a>
+  <p class="booking-note">Denver-based · Available across Colorado & beyond</p>
+</section>
+
+<footer>
+  <div class="footer-wordmark">BERMUDA</div>
+  <p class="footer-tagline">Lost in the sound. Found on the floor.</p>
+  <div class="footer-links">
+    <a href="mailto:bookbermuda@gmail.com">Bookings</a>
+    <a href="#">Instagram</a>
+    <a href="#">SoundCloud</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -273,6 +273,14 @@
     line-height: 1;
   }
 
+  .stat-glyph {
+    display: block;
+    height: 34px;
+    width: auto;
+    margin: 9px 0;
+    color: var(--amber);
+  }
+
   .stat-label {
     font-size: 11px;
     letter-spacing: 4px;
@@ -401,16 +409,6 @@
     padding-left: 6px;
     color: var(--warm-white);
     line-height: 1;
-    margin-bottom: 20px;
-  }
-
-  .listen-sub {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(18px, 2vw, 22px);
-    font-style: italic;
-    font-weight: 300;
-    color: var(--sand);
-    letter-spacing: 0.5px;
     margin-bottom: 48px;
   }
 
@@ -459,16 +457,17 @@
 
   .moment { position: relative; }
 
+  .moment-frame { overflow: hidden; }
+
   .moment img {
     width: 100%;
+    aspect-ratio: 3 / 4;
     object-fit: cover;
     filter: saturate(0.85) contrast(1.05) brightness(0.92);
     transition: filter 0.6s ease;
   }
 
   .moment:hover img { filter: saturate(1) contrast(1.05) brightness(1); }
-
-  .moment img { aspect-ratio: 3 / 4; }
 
   .moment-cap {
     display: flex;
@@ -484,10 +483,31 @@
     background: var(--gold);
     opacity: 0.6;
     flex-shrink: 0;
-    transform: translateY(-5px);
+    transform: translateY(-6px);
   }
 
-  .moment-cap .caption { font-size: clamp(18px, 2vw, 22px); }
+  .moment-cap .caption { font-size: clamp(20px, 2.4vw, 28px); }
+
+  /* Reveal: photos surface out of the dark and settle into colour as the section scrolls in.
+     Only applied with JS present and motion allowed; otherwise everything is simply visible. */
+  .js .moments:not(.is-visible) .moment { opacity: 0; transform: translateY(48px); }
+  .js .moments:not(.is-visible) .moment img { transform: scale(1.12); filter: saturate(0.2) brightness(0.45); }
+  .js .moments:not(.is-visible) .moment-cap::before { width: 0; }
+  .js .moments:not(.is-visible) .moment-cap .caption { opacity: 0; transform: translateX(-10px); }
+
+  .js .moment { transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .js .moment img { transition: transform 2.6s cubic-bezier(0.2, 0.7, 0.2, 1), filter 1.8s ease; }
+  .js .moment-cap::before { transition: width 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.9s; }
+  .js .moment-cap .caption { transition: opacity 0.9s ease 1.2s, transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 1.2s; }
+
+  .js .moment:nth-child(2),
+  .js .moment:nth-child(2) img,
+  .js .moment:nth-child(2) .moment-cap::before,
+  .js .moment:nth-child(2) .moment-cap .caption { transition-delay: 0.35s; }
+  .js .moment:nth-child(2) .moment-cap::before { transition-delay: 1.25s; }
+  .js .moment:nth-child(2) .moment-cap .caption { transition-delay: 1.55s; }
+
+  .moment-drift { will-change: transform; }
 
   /* BOOKING */
   .booking {
@@ -609,6 +629,11 @@
     html { scroll-behavior: auto; }
     .hero-glow, .hero-glow-teal { animation: none; }
     .hero-eyebrow, .hero-wordmark, .hero-tagline, .hero-divider { animation: none; opacity: 1; }
+    .js .moments:not(.is-visible) .moment { opacity: 1; transform: none; }
+    .js .moments:not(.is-visible) .moment img { transform: none; filter: saturate(0.85) contrast(1.05) brightness(0.92); }
+    .js .moments:not(.is-visible) .moment-cap::before { width: 32px; }
+    .js .moments:not(.is-visible) .moment-cap .caption { opacity: 1; transform: none; }
+    .js .moment, .js .moment img, .js .moment-cap::before, .js .moment-cap .caption { transition: none; }
   }
 
   /* RESPONSIVE */
@@ -654,6 +679,7 @@
 </style>
 </head>
 <body>
+<script>document.documentElement.classList.add('js');</script>
 
 <nav>
   <a href="#" class="nav-brand" aria-label="Bermuda — back to top">
@@ -708,7 +734,11 @@
       <div class="stat-label">Based in Denver</div>
     </div>
     <div class="stat-row">
-      <div class="stat-num">∞</div>
+      <div class="stat-num">
+        <svg class="stat-glyph" viewBox="0 0 64 32" role="img" aria-label="Infinity" fill="none">
+          <path d="M32 16 C 40 3, 59 3, 59 16 C 59 29, 40 29, 32 16 C 24 3, 5 3, 5 16 C 5 29, 24 29, 32 16 Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+        </svg>
+      </div>
       <div class="stat-label">Sets that ran long</div>
     </div>
   </div>
@@ -738,7 +768,6 @@
   <div>
     <p class="listen-label">03 — The Latest Set</p>
     <h2 class="listen-heading">PRESS PLAY.<br>DISAPPEAR.</h2>
-    <p class="listen-sub">Sixty minutes, no skips, zero regrets.</p>
     <div class="player">
       <!-- Profile embed plays Bermuda's tracks newest first. To pin one set, swap the URL-encoded profile URL in src for a track URL. -->
       <iframe
@@ -754,12 +783,20 @@
 <!-- MOMENTS -->
 <section class="moments" aria-label="Moments">
   <figure class="moment">
-    <img src="images/venue-dusk.jpg" width="768" height="1024" alt="A glowing green cube above a clifftop bar at dusk, crowd walking out along a lit pier" loading="lazy">
-    <figcaption class="moment-cap"><span class="caption">Lost in the sound.</span></figcaption>
+    <div class="moment-drift" data-drift="-0.05">
+      <div class="moment-frame">
+        <img src="images/venue-dusk.jpg" width="768" height="1024" alt="A glowing green cube above a clifftop bar at dusk, crowd walking out along a lit pier" loading="lazy">
+      </div>
+      <figcaption class="moment-cap"><span class="caption">Lost in the sound.</span></figcaption>
+    </div>
   </figure>
   <figure class="moment">
-    <img src="images/floor-red.jpg" width="360" height="480" alt="A blurred, red-lit laugh on a crowded dancefloor" loading="lazy">
-    <figcaption class="moment-cap"><span class="caption">Found on the floor.</span></figcaption>
+    <div class="moment-drift" data-drift="0.07">
+      <div class="moment-frame">
+        <img src="images/floor-red.jpg" width="360" height="480" alt="A blurred, red-lit laugh on a crowded dancefloor" loading="lazy">
+      </div>
+      <figcaption class="moment-cap"><span class="caption">Found on the floor.</span></figcaption>
+    </div>
   </figure>
 </section>
 
@@ -788,6 +825,55 @@
     <a href="https://soundcloud.com/bermuda-121278452" target="_blank" rel="noopener">SoundCloud</a>
   </div>
 </footer>
+
+<script>
+(function () {
+  var section = document.querySelector('.moments');
+  if (!section) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  // Reveal once, when the pair is a third of the way into view.
+  if ('IntersectionObserver' in window && !reduce.matches) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { section.classList.add('is-visible'); io.disconnect(); }
+      });
+    }, { threshold: 0.3 });
+    io.observe(section);
+  } else {
+    section.classList.add('is-visible');
+  }
+
+  // Desktop only: the two photos drift at slightly different speeds while scrolling.
+  var drifts = Array.prototype.slice.call(section.querySelectorAll('.moment-drift'));
+  var wide = window.matchMedia('(min-width: 900px)');
+  var ticking = false;
+  function update() {
+    ticking = false;
+    var vh = window.innerHeight;
+    var rect = section.getBoundingClientRect();
+    var offset = (rect.top + rect.height / 2) - vh / 2;
+    drifts.forEach(function (el) {
+      var k = parseFloat(el.getAttribute('data-drift')) || 0;
+      el.style.transform = 'translateY(' + (offset * k).toFixed(1) + 'px)';
+    });
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+  function arm() {
+    if (wide.matches && !reduce.matches) {
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      update();
+    } else {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      drifts.forEach(function (el) { el.style.transform = ''; });
+    }
+  }
+  arm();
+  wide.addEventListener ? wide.addEventListener('change', arm) : wide.addListener(arm);
+})();
+</script>
 
 </body>
 </html>

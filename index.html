@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bermuda — Tech House · Denver</title>
-<meta name="description" content="Bermuda is a Denver-based tech house trio. Lost in the sound. Found on the floor. Bookings: bookbermuda.mp3@gmail.com">
+<meta name="description" content="Bermuda is a Denver-based tech house trio. Lost in the sound. Found on the floor. Clubs, festivals, private events.">
 <meta name="theme-color" content="#0D0705">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Bermuda — Tech House · Denver">
@@ -198,7 +198,7 @@
   }
 
   /* Guards: grid children may shrink; display headings break only if the web font is missing */
-  .about > *, .listen > *, .moments > * { min-width: 0; }
+  .about > *, .moments > * { min-width: 0; }
   .about-heading, .sound-heading, .listen-heading, .booking-heading { overflow-wrap: anywhere; }
 
   /* SHARED LABELS */
@@ -224,7 +224,7 @@
   .about {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 120px 48px 0;
+    padding: 120px 48px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
@@ -249,56 +249,10 @@
 
   .about-body p + p { margin-top: 20px; }
 
-  .about-figure {
-    position: relative;
-    border-left: 2px solid var(--gold);
-    padding-left: 2px;
-  }
-
-  .about-figure img {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    filter: sepia(0.18) contrast(1.05) brightness(0.9);
-    transition: filter 0.6s ease;
-  }
-
-  .about-figure:hover img { filter: sepia(0.05) contrast(1.05) brightness(1); }
-
-  .about-figure::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(to top, rgba(13,7,5,0.55), transparent 45%);
-  }
-
-  .about-figure figcaption {
-    position: absolute;
-    left: 24px; right: 24px; bottom: 20px;
-    z-index: 1;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 16px;
-  }
-
-  .about-figure .caption { color: var(--warm-white); }
-
-  .figure-tag {
-    font-size: 9px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--gold);
-    white-space: nowrap;
-  }
 
   .about-stats {
-    max-width: 1100px;
-    margin: 64px auto 0;
-    padding: 0 48px 120px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 2px;
   }
 
@@ -425,57 +379,16 @@
 
   /* LISTEN — latest set */
   .listen {
-    max-width: 1100px;
+    max-width: 760px;
     margin: 0 auto;
     padding: 140px 48px 120px;
-    display: grid;
-    grid-template-columns: 5fr 7fr;
-    gap: 72px;
-    align-items: center;
+    text-align: center;
   }
-
-  .cover {
-    position: relative;
-    margin: 18px;
-  }
-
-  .cover::before {
-    content: '';
-    position: absolute;
-    inset: -18px;
-    border: 1px dashed rgba(201,146,58,0.45);
-    pointer-events: none;
-  }
-
-  .cover::after {
-    content: '';
-    position: absolute;
-    left: 50%; top: -18px;
-    width: 1px; height: 18px;
-    background: var(--gold);
-    opacity: 0.7;
-  }
-
-  .cover img {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    filter: grayscale(1) contrast(1.05);
-  }
-
-  .cover-meta {
-    position: absolute;
-    left: 0; right: 0; bottom: -46px;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-  }
-
-  .cover-meta .figure-tag { color: var(--muted); }
 
   .listen-label {
     font-size: 10px;
     letter-spacing: 6px;
+    padding-left: 6px;
     text-transform: uppercase;
     color: var(--teal);
     margin-bottom: 20px;
@@ -485,6 +398,7 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(48px, 6vw, 80px);
     letter-spacing: 6px;
+    padding-left: 6px;
     color: var(--warm-white);
     line-height: 1;
     margin-bottom: 20px;
@@ -497,20 +411,19 @@
     font-weight: 300;
     color: var(--sand);
     letter-spacing: 0.5px;
-    margin-bottom: 40px;
+    margin-bottom: 48px;
   }
 
   .player {
-    position: relative;
-    border-top: 1px solid rgba(201,146,58,0.35);
-    padding-top: 2px;
+    border: 1px solid rgba(201,146,58,0.25);
+    padding: 8px;
     background: var(--dusk);
   }
 
   .player iframe {
     display: block;
     width: 100%;
-    height: 300px;
+    height: 166px;
     border: 0;
   }
 
@@ -518,7 +431,7 @@
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    margin-top: 24px;
+    margin-top: 28px;
     font-size: 10px;
     letter-spacing: 4px;
     text-transform: uppercase;
@@ -539,8 +452,8 @@
     margin: 0 auto;
     padding: 40px 48px 160px;
     display: grid;
-    grid-template-columns: 7fr 5fr;
-    gap: 64px;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
     align-items: start;
   }
 
@@ -555,15 +468,7 @@
 
   .moment:hover img { filter: saturate(1) contrast(1.05) brightness(1); }
 
-  .moment-a img { aspect-ratio: 3 / 4; }
-
-  .moment-b {
-    margin-top: 160px;
-    width: 78%;
-    margin-left: auto;
-  }
-
-  .moment-b img { aspect-ratio: 3 / 4; }
+  .moment img { aspect-ratio: 3 / 4; }
 
   .moment-cap {
     display: flex;
@@ -708,10 +613,7 @@
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
-    .listen { grid-template-columns: 1fr; gap: 88px; }
-    .cover { max-width: 420px; margin: 18px auto 0; }
     .moments { grid-template-columns: 1fr; gap: 56px; }
-    .moment-b { margin-top: 0; width: 72%; }
   }
 
   @media (max-width: 768px) {
@@ -728,15 +630,12 @@
     .hero { padding: 120px 24px 80px; }
     .hero-eyebrow { letter-spacing: 5px; padding-left: 5px; }
 
-    .about { grid-template-columns: 1fr; gap: 48px; padding: 80px 24px 0; }
-    .about-figure figcaption { left: 16px; right: 16px; bottom: 14px; flex-direction: column; gap: 4px; }
-    .about-stats { grid-template-columns: 1fr; padding: 0 24px 80px; margin-top: 48px; }
+    .about { grid-template-columns: 1fr; gap: 48px; padding: 80px 24px; }
 
     .sound { padding: 110px 24px; }
     .sound-bg img { object-position: center 30%; }
 
     .listen { padding: 100px 24px 80px; }
-    .cover-meta { bottom: -42px; }
 
     .moments { padding: 24px 24px 100px; }
 
@@ -799,29 +698,21 @@
       <p>We play clubs, festivals, and private events across Colorado and beyond. You went in for a quick drink. You left at 2am. You're welcome.</p>
     </div>
   </div>
-  <figure class="about-figure">
-    <img src="images/trio-studio.jpg" width="1024" height="768" alt="The three Bermuda DJs grinning behind a controller in the studio, one wearing headphones" loading="lazy">
-    <figcaption>
-      <span class="caption">Three real people. One very specific problem with stopping early.</span>
-      <span class="figure-tag">Behind the drop</span>
-    </figcaption>
-  </figure>
+  <div class="about-stats">
+    <div class="stat-row">
+      <div class="stat-num">3</div>
+      <div class="stat-label">DJs, one sound</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-num">CO</div>
+      <div class="stat-label">Based in Denver</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Sets that ran long</div>
+    </div>
+  </div>
 </section>
-
-<div class="about-stats">
-  <div class="stat-row">
-    <div class="stat-num">3</div>
-    <div class="stat-label">DJs, one sound</div>
-  </div>
-  <div class="stat-row">
-    <div class="stat-num">CO</div>
-    <div class="stat-label">Based in Denver</div>
-  </div>
-  <div class="stat-row">
-    <div class="stat-num">∞</div>
-    <div class="stat-label">Sets that ran long</div>
-  </div>
-</div>
 
 <!-- SOUND -->
 <section class="sound" id="sound">
@@ -844,13 +735,6 @@
 
 <!-- LISTEN — latest set -->
 <section class="listen" id="listen">
-  <figure class="cover">
-    <img src="images/set-cover.jpg" width="768" height="768" alt="Two Bermuda DJs mid-set in black and white, one pointing to the crowd" loading="lazy">
-    <figcaption class="cover-meta">
-      <span class="figure-tag">Latest set</span>
-      <span class="figure-tag">Recorded live</span>
-    </figcaption>
-  </figure>
   <div>
     <p class="listen-label">03 — The Latest Set</p>
     <h2 class="listen-heading">PRESS PLAY.<br>DISAPPEAR.</h2>
@@ -859,7 +743,7 @@
       <!-- Profile embed plays Bermuda's tracks newest first. To pin one set, swap the URL-encoded profile URL in src for a track URL. -->
       <iframe
         title="Bermuda — latest set on SoundCloud"
-        src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fbermuda-121278452&color=%23c9923a&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true"
+        src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fbermuda-121278452&color=%23c9923a&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false"
         allow="autoplay"
         loading="lazy"></iframe>
     </div>
@@ -869,11 +753,11 @@
 
 <!-- MOMENTS -->
 <section class="moments" aria-label="Moments">
-  <figure class="moment moment-a">
+  <figure class="moment">
     <img src="images/venue-dusk.jpg" width="768" height="1024" alt="A glowing green cube above a clifftop bar at dusk, crowd walking out along a lit pier" loading="lazy">
     <figcaption class="moment-cap"><span class="caption">Lost in the sound.</span></figcaption>
   </figure>
-  <figure class="moment moment-b">
+  <figure class="moment">
     <img src="images/floor-red.jpg" width="360" height="480" alt="A blurred, red-lit laugh on a crowded dancefloor" loading="lazy">
     <figcaption class="moment-cap"><span class="caption">Found on the floor.</span></figcaption>
   </figure>
@@ -884,7 +768,7 @@
   <p class="booking-label">04 — Work With Us</p>
   <h2 class="booking-heading">BOOK<br>BERMUDA</h2>
   <p class="booking-sub">Clubs, festivals, private events — we keep dancefloors moving from open to close.</p>
-  <a href="mailto:bookbermuda.mp3@gmail.com" class="booking-email">BOOKBERMUDA.MP3@GMAIL.COM</a>
+  <a href="mailto:bookbermuda.mp3@gmail.com" class="booking-email">COME GET LOST WITH US</a>
   <p class="booking-note">Denver-based · Available across Colorado & beyond</p>
 </section>
 

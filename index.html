@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bermuda — Tech House · Denver</title>
+<meta name="description" content="Bermuda is a Denver-based tech house trio. Lost in the sound. Found on the floor. Bookings: bookbermuda.mp3@gmail.com">
+<meta name="theme-color" content="#0D0705">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bermuda — Tech House · Denver">
+<meta property="og:description" content="Lost in the sound. Found on the floor. A Denver tech house trio that keeps dancefloors moving from open to close.">
+<meta property="og:url" content="https://bermuda-site.vercel.app/">
+<meta property="og:image" content="https://bermuda-site.vercel.app/images/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -40,6 +52,12 @@
     opacity: 0.5;
   }
 
+  img { display: block; max-width: 100%; height: auto; }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--deep); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
   /* NAV */
   nav {
     position: fixed;
@@ -52,12 +70,22 @@
     background: linear-gradient(to bottom, rgba(13,7,5,0.9), transparent);
   }
 
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+  }
+
+  .brand-icon { width: 28px; height: 28px; flex-shrink: 0; }
+
   .nav-wordmark {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 24px;
     letter-spacing: 8px;
     color: var(--warm-white);
-    text-decoration: none;
+    line-height: 1;
+    transform: translateY(2px);
   }
 
   .nav-links {
@@ -119,6 +147,7 @@
   .hero-eyebrow {
     font-size: 10px;
     letter-spacing: 7px;
+    padding-left: 7px;
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 40px;
@@ -128,14 +157,17 @@
   }
 
   .hero-wordmark {
+    --track: clamp(6px, 3vw, 20px);
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(80px, 14vw, 160px);
-    letter-spacing: 20px;
+    font-size: clamp(64px, 18vw, 160px);
+    letter-spacing: var(--track);
+    padding-left: var(--track);
     color: var(--warm-white);
     line-height: 1;
     opacity: 0;
     animation: fadeUp 0.9s ease forwards 0.4s;
     position: relative;
+    max-width: 100%;
   }
 
   .hero-tagline {
@@ -165,23 +197,38 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* ABOUT */
-  .about {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 120px 48px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
+  /* Guards: grid children may shrink; display headings break only if the web font is missing */
+  .about > *, .listen > *, .moments > * { min-width: 0; }
+  .about-heading, .sound-heading, .listen-heading, .booking-heading { overflow-wrap: anywhere; }
 
-  .about-label {
+  /* SHARED LABELS */
+  .section-label {
     font-size: 10px;
     letter-spacing: 6px;
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 20px;
+  }
+
+  .caption {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--sand);
+    letter-spacing: 1px;
+    line-height: 1.5;
+  }
+
+  /* ABOUT */
+  .about {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 120px 48px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
   }
 
   .about-heading {
@@ -202,9 +249,56 @@
 
   .about-body p + p { margin-top: 20px; }
 
-  .about-stats {
+  .about-figure {
+    position: relative;
+    border-left: 2px solid var(--gold);
+    padding-left: 2px;
+  }
+
+  .about-figure img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    filter: sepia(0.18) contrast(1.05) brightness(0.9);
+    transition: filter 0.6s ease;
+  }
+
+  .about-figure:hover img { filter: sepia(0.05) contrast(1.05) brightness(1); }
+
+  .about-figure::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(to top, rgba(13,7,5,0.55), transparent 45%);
+  }
+
+  .about-figure figcaption {
+    position: absolute;
+    left: 24px; right: 24px; bottom: 20px;
+    z-index: 1;
     display: flex;
-    flex-direction: column;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .about-figure .caption { color: var(--warm-white); }
+
+  .figure-tag {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  .about-stats {
+    max-width: 1100px;
+    margin: 64px auto 0;
+    padding: 0 48px 120px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 2px;
   }
 
@@ -236,35 +330,56 @@
   /* SOUND */
   .sound {
     background: var(--dusk);
-    padding: 120px 48px;
+    padding: 160px 48px;
     text-align: center;
     position: relative;
     overflow: hidden;
   }
 
-  .sound::before {
-    content: '';
+  .sound-bg {
     position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--gold), transparent);
-    opacity: 0.3;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
   }
 
+  .sound-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    opacity: 0.32;
+    filter: grayscale(1) contrast(1.1);
+  }
+
+  .sound-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, var(--dusk) 0%, rgba(26,15,10,0.35) 35%, rgba(26,15,10,0.35) 65%, var(--dusk) 100%),
+      radial-gradient(ellipse at center, rgba(26,15,10,0.55) 0%, transparent 70%);
+  }
+
+  .sound::before,
   .sound::after {
     content: '';
     position: absolute;
-    bottom: 0; left: 0; right: 0;
+    left: 0; right: 0;
     height: 1px;
     background: linear-gradient(to right, transparent, var(--gold), transparent);
     opacity: 0.3;
+    z-index: 2;
   }
+  .sound::before { top: 0; }
+  .sound::after  { bottom: 0; }
 
-  .sound-inner { max-width: 700px; margin: 0 auto; position: relative; }
+  .sound-inner { max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
 
   .sound-label {
     font-size: 10px;
     letter-spacing: 6px;
+    padding-left: 6px;
     text-transform: uppercase;
     color: var(--teal);
     margin-bottom: 20px;
@@ -274,6 +389,7 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(48px, 6vw, 80px);
     letter-spacing: 6px;
+    padding-left: 6px;
     color: var(--warm-white);
     line-height: 1;
     margin-bottom: 32px;
@@ -304,19 +420,182 @@
     color: var(--gold);
     border: 1px solid rgba(201,146,58,0.3);
     padding: 8px 20px;
+    background: rgba(13,7,5,0.4);
   }
+
+  /* LISTEN — latest set */
+  .listen {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 140px 48px 120px;
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 72px;
+    align-items: center;
+  }
+
+  .cover {
+    position: relative;
+    margin: 18px;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: -18px;
+    border: 1px dashed rgba(201,146,58,0.45);
+    pointer-events: none;
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    left: 50%; top: -18px;
+    width: 1px; height: 18px;
+    background: var(--gold);
+    opacity: 0.7;
+  }
+
+  .cover img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.05);
+  }
+
+  .cover-meta {
+    position: absolute;
+    left: 0; right: 0; bottom: -46px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .cover-meta .figure-tag { color: var(--muted); }
+
+  .listen-label {
+    font-size: 10px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 20px;
+  }
+
+  .listen-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    letter-spacing: 6px;
+    color: var(--warm-white);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .listen-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2vw, 22px);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--sand);
+    letter-spacing: 0.5px;
+    margin-bottom: 40px;
+  }
+
+  .player {
+    position: relative;
+    border-top: 1px solid rgba(201,146,58,0.35);
+    padding-top: 2px;
+    background: var(--dusk);
+  }
+
+  .player iframe {
+    display: block;
+    width: 100%;
+    height: 300px;
+    border: 0;
+  }
+
+  .listen-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border: 1px solid rgba(201,146,58,0.3);
+    padding: 10px 20px;
+    transition: border-color 0.3s, color 0.3s;
+  }
+
+  .listen-link:hover { border-color: var(--gold); color: var(--amber); }
+
+  .listen-link span { font-family: 'Cormorant Garamond', serif; font-size: 16px; line-height: 1; transform: translateY(-1px); }
+
+  /* MOMENTS — diptych */
+  .moments {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 48px 160px;
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .moment { position: relative; }
+
+  .moment img {
+    width: 100%;
+    object-fit: cover;
+    filter: saturate(0.85) contrast(1.05) brightness(0.92);
+    transition: filter 0.6s ease;
+  }
+
+  .moment:hover img { filter: saturate(1) contrast(1.05) brightness(1); }
+
+  .moment-a img { aspect-ratio: 3 / 4; }
+
+  .moment-b {
+    margin-top: 160px;
+    width: 78%;
+    margin-left: auto;
+  }
+
+  .moment-b img { aspect-ratio: 3 / 4; }
+
+  .moment-cap {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-top: 18px;
+  }
+
+  .moment-cap::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.6;
+    flex-shrink: 0;
+    transform: translateY(-5px);
+  }
+
+  .moment-cap .caption { font-size: clamp(18px, 2vw, 22px); }
 
   /* BOOKING */
   .booking {
     max-width: 900px;
     margin: 0 auto;
-    padding: 140px 48px;
+    padding: 0 48px 140px;
     text-align: center;
   }
 
   .booking-label {
     font-size: 10px;
     letter-spacing: 6px;
+    padding-left: 6px;
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 20px;
@@ -324,8 +603,9 @@
 
   .booking-heading {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(56px, 8vw, 104px);
+    font-size: clamp(48px, 8vw, 104px);
     letter-spacing: 8px;
+    padding-left: 8px;
     color: var(--warm-white);
     line-height: 1;
     margin-bottom: 32px;
@@ -342,6 +622,7 @@
 
   .booking-email {
     display: inline-block;
+    max-width: 100%;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 22px;
     letter-spacing: 6px;
@@ -372,15 +653,26 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 24px;
     max-width: 1100px;
     margin: 0 auto;
   }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .footer-brand .brand-icon { width: 22px; height: 22px; opacity: 0.6; }
 
   .footer-wordmark {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 20px;
     letter-spacing: 8px;
     color: var(--muted);
+    line-height: 1;
+    transform: translateY(2px);
   }
 
   .footer-tagline {
@@ -407,24 +699,81 @@
 
   .footer-links a:hover { color: var(--gold); }
 
+  /* MOTION PREFERENCE */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hero-glow, .hero-glow-teal { animation: none; }
+    .hero-eyebrow, .hero-wordmark, .hero-tagline, .hero-divider { animation: none; opacity: 1; }
+  }
+
   /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .listen { grid-template-columns: 1fr; gap: 88px; }
+    .cover { max-width: 420px; margin: 18px auto 0; }
+    .moments { grid-template-columns: 1fr; gap: 56px; }
+    .moment-b { margin-top: 0; width: 72%; }
+  }
+
   @media (max-width: 768px) {
-    nav { padding: 20px 24px; }
-    .nav-links { display: none; }
-    .about { grid-template-columns: 1fr; gap: 48px; padding: 80px 24px; }
-    .sound { padding: 80px 24px; }
-    .booking { padding: 80px 24px; }
-    footer { flex-direction: column; gap: 24px; text-align: center; padding: 40px 24px; }
+    nav {
+      padding: 18px 24px 14px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      background: linear-gradient(to bottom, rgba(13,7,5,0.95) 60%, transparent);
+    }
+    .nav-links { gap: 18px; }
+    .nav-links a { font-size: 10px; letter-spacing: 3px; }
+
+    .hero { padding: 120px 24px 80px; }
+    .hero-eyebrow { letter-spacing: 5px; padding-left: 5px; }
+
+    .about { grid-template-columns: 1fr; gap: 48px; padding: 80px 24px 0; }
+    .about-figure figcaption { left: 16px; right: 16px; bottom: 14px; flex-direction: column; gap: 4px; }
+    .about-stats { grid-template-columns: 1fr; padding: 0 24px 80px; margin-top: 48px; }
+
+    .sound { padding: 110px 24px; }
+    .sound-bg img { object-position: center 30%; }
+
+    .listen { padding: 100px 24px 80px; }
+    .cover-meta { bottom: -42px; }
+
+    .moments { padding: 24px 24px 100px; }
+
+    .booking { padding: 0 24px 100px; }
+    .booking-heading { font-size: clamp(48px, 13vw, 104px); letter-spacing: 6px; padding-left: 6px; }
+    .booking-email {
+      display: block;
+      padding: 18px 16px;
+      font-size: clamp(15px, 4.2vw, 22px);
+      letter-spacing: 2px;
+      overflow-wrap: anywhere;
+    }
+
+    footer { flex-direction: column; text-align: center; padding: 40px 24px; }
   }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="#" class="nav-wordmark">BERMUDA</a>
+  <a href="#" class="nav-brand" aria-label="Bermuda — back to top">
+    <svg class="brand-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="40" cy="40" r="38" stroke="#C9923A" stroke-width="1" stroke-dasharray="3 4" opacity="0.4"/>
+      <polygon points="40,10 68,62 12,62" stroke="#C9923A" stroke-width="1.5" fill="none" opacity="0.9"/>
+      <polygon points="40,58 18,20 62,20" stroke="#E8B86D" stroke-width="0.8" fill="none" opacity="0.5"/>
+      <circle cx="40" cy="40" r="3" fill="#C9923A"/>
+      <line x1="40" y1="2" x2="40" y2="14" stroke="#C9923A" stroke-width="1" opacity="0.6"/>
+      <line x1="40" y1="66" x2="40" y2="78" stroke="#C9923A" stroke-width="1" opacity="0.6"/>
+      <line x1="2" y1="40" x2="14" y2="40" stroke="#C9923A" stroke-width="1" opacity="0.6"/>
+      <line x1="66" y1="40" x2="78" y2="40" stroke="#C9923A" stroke-width="1" opacity="0.6"/>
+    </svg>
+    <span class="nav-wordmark">BERMUDA</span>
+  </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#sound">Sound</a></li>
+    <li><a href="#listen">Listen</a></li>
     <li><a href="#booking">Book Us</a></li>
   </ul>
 </nav>
@@ -442,7 +791,7 @@
 <!-- ABOUT -->
 <section class="about" id="about">
   <div>
-    <p class="about-label">01 — Who We Are</p>
+    <p class="section-label">01 — Who We Are</p>
     <h2 class="about-heading">THREE DJS.<br>ONE NAME.</h2>
     <div class="about-body">
       <p>Bermuda is a tech house trio based in Denver, Colorado. Named for the feeling of disappearing — the moment you stop checking your phone, stop watching the clock, and surrender entirely to the music.</p>
@@ -450,24 +799,35 @@
       <p>We play clubs, festivals, and private events across Colorado and beyond. You went in for a quick drink. You left at 2am. You're welcome.</p>
     </div>
   </div>
-  <div class="about-stats">
-    <div class="stat-row">
-      <div class="stat-num">3</div>
-      <div class="stat-label">DJs, one sound</div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-num">CO</div>
-      <div class="stat-label">Based in Denver</div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-num">∞</div>
-      <div class="stat-label">Sets that ran long</div>
-    </div>
-  </div>
+  <figure class="about-figure">
+    <img src="images/trio-studio.jpg" width="1024" height="768" alt="The three Bermuda DJs grinning behind a controller in the studio, one wearing headphones" loading="lazy">
+    <figcaption>
+      <span class="caption">Three real people. One very specific problem with stopping early.</span>
+      <span class="figure-tag">Behind the drop</span>
+    </figcaption>
+  </figure>
 </section>
+
+<div class="about-stats">
+  <div class="stat-row">
+    <div class="stat-num">3</div>
+    <div class="stat-label">DJs, one sound</div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-num">CO</div>
+    <div class="stat-label">Based in Denver</div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-num">∞</div>
+    <div class="stat-label">Sets that ran long</div>
+  </div>
+</div>
 
 <!-- SOUND -->
 <section class="sound" id="sound">
+  <div class="sound-bg" aria-hidden="true">
+    <img src="images/smoke.jpg" width="724" height="1086" alt="" loading="lazy">
+  </div>
   <div class="sound-inner">
     <p class="sound-label">02 — The Sound</p>
     <h2 class="sound-heading">TECH HOUSE.<br>NO APOLOGIES.</h2>
@@ -482,22 +842,66 @@
   </div>
 </section>
 
+<!-- LISTEN — latest set -->
+<section class="listen" id="listen">
+  <figure class="cover">
+    <img src="images/set-cover.jpg" width="768" height="768" alt="Two Bermuda DJs mid-set in black and white, one pointing to the crowd" loading="lazy">
+    <figcaption class="cover-meta">
+      <span class="figure-tag">Latest set</span>
+      <span class="figure-tag">Recorded live</span>
+    </figcaption>
+  </figure>
+  <div>
+    <p class="listen-label">03 — The Latest Set</p>
+    <h2 class="listen-heading">PRESS PLAY.<br>DISAPPEAR.</h2>
+    <p class="listen-sub">Sixty minutes, no skips, zero regrets.</p>
+    <div class="player">
+      <!-- Profile embed plays Bermuda's tracks newest first. To pin one set, swap the URL-encoded profile URL in src for a track URL. -->
+      <iframe
+        title="Bermuda — latest set on SoundCloud"
+        src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fbermuda-121278452&color=%23c9923a&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true"
+        allow="autoplay"
+        loading="lazy"></iframe>
+    </div>
+    <a class="listen-link" href="https://soundcloud.com/bermuda-121278452" target="_blank" rel="noopener">Listen on SoundCloud <span>→</span></a>
+  </div>
+</section>
+
+<!-- MOMENTS -->
+<section class="moments" aria-label="Moments">
+  <figure class="moment moment-a">
+    <img src="images/venue-dusk.jpg" width="768" height="1024" alt="A glowing green cube above a clifftop bar at dusk, crowd walking out along a lit pier" loading="lazy">
+    <figcaption class="moment-cap"><span class="caption">Lost in the sound.</span></figcaption>
+  </figure>
+  <figure class="moment moment-b">
+    <img src="images/floor-red.jpg" width="360" height="480" alt="A blurred, red-lit laugh on a crowded dancefloor" loading="lazy">
+    <figcaption class="moment-cap"><span class="caption">Found on the floor.</span></figcaption>
+  </figure>
+</section>
+
 <!-- BOOKING -->
 <section class="booking" id="booking">
-  <p class="booking-label">03 — Work With Us</p>
+  <p class="booking-label">04 — Work With Us</p>
   <h2 class="booking-heading">BOOK<br>BERMUDA</h2>
   <p class="booking-sub">Clubs, festivals, private events — we keep dancefloors moving from open to close.</p>
-  <a href="mailto:bookbermuda@gmail.com" class="booking-email">BOOKBERMUDA@GMAIL.COM</a>
+  <a href="mailto:bookbermuda.mp3@gmail.com" class="booking-email">BOOKBERMUDA.MP3@GMAIL.COM</a>
   <p class="booking-note">Denver-based · Available across Colorado & beyond</p>
 </section>
 
 <footer>
-  <div class="footer-wordmark">BERMUDA</div>
+  <div class="footer-brand">
+    <svg class="brand-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="40" cy="40" r="38" stroke="#C9923A" stroke-width="1" stroke-dasharray="3 4" opacity="0.4"/>
+      <polygon points="40,10 68,62 12,62" stroke="#C9923A" stroke-width="1.5" fill="none" opacity="0.9"/>
+      <polygon points="40,58 18,20 62,20" stroke="#E8B86D" stroke-width="0.8" fill="none" opacity="0.5"/>
+      <circle cx="40" cy="40" r="3" fill="#C9923A"/>
+    </svg>
+    <div class="footer-wordmark">BERMUDA</div>
+  </div>
   <p class="footer-tagline">Lost in the sound. Found on the floor.</p>
   <div class="footer-links">
-    <a href="mailto:bookbermuda@gmail.com">Bookings</a>
-    <a href="#">Instagram</a>
-    <a href="#">SoundCloud</a>
+    <a href="mailto:bookbermuda.mp3@gmail.com">Bookings</a>
+    <a href="https://soundcloud.com/bermuda-121278452" target="_blank" rel="noopener">SoundCloud</a>
   </div>
 </footer>
 

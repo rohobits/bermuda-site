@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bermuda — Brand Identity Guidelines</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold:       #C9923A;
+    --amber:      #E8B86D;
+    --sand:       #D4B896;
+    --dusk:       #1A0F0A;
+    --deep:       #0D0705;
+    --smoke:      #2E1F15;
+    --warm-white: #F5EDE0;
+    --muted:      #8A7060;
+    --accent-teal: #3ECFCF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--deep);
+    color: var(--warm-white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.6;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 80px 40px;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,146,58,0.18) 0%, rgba(201,146,58,0.04) 50%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 6s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero-logo-lockup {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+
+  /* ── SVG ICON ── */
+  .brand-icon {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+  }
+
+  .hero-wordmark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 96px;
+    letter-spacing: 12px;
+    color: var(--warm-white);
+    line-height: 1;
+  }
+
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--sand);
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+
+  .hero-sub {
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+
+  .hero-divider {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    margin: 48px auto;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1s;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 40px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    letter-spacing: 4px;
+    color: var(--warm-white);
+    line-height: 1;
+    margin-bottom: 48px;
+  }
+
+  .divider-line {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin-bottom: 64px;
+    opacity: 0.3;
+  }
+
+  /* ── BRAND ESSENCE ── */
+  .essence-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: rgba(201,146,58,0.1);
+    border: 1px solid rgba(201,146,58,0.15);
+  }
+
+  .essence-card {
+    background: var(--dusk);
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s ease;
+  }
+
+  .essence-card:hover { background: var(--smoke); }
+
+  .essence-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .essence-card:hover::before { opacity: 1; }
+
+  .essence-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 300;
+    color: rgba(201,146,58,0.12);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .essence-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 3px;
+    color: var(--amber);
+    margin-bottom: 12px;
+  }
+
+  .essence-body {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--sand);
+    font-weight: 300;
+  }
+
+  /* ── COLOR PALETTE ── */
+  .palette-row {
+    display: flex;
+    gap: 0;
+    height: 120px;
+    border: 1px solid rgba(201,146,58,0.1);
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+
+  .swatch {
+    flex: 1;
+    position: relative;
+    cursor: pointer;
+    transition: flex 0.4s ease;
+  }
+
+  .swatch:hover { flex: 2; }
+
+  .swatch-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 10px 12px;
+    background: rgba(0,0,0,0.5);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .swatch:hover .swatch-label { opacity: 1; }
+
+  .palette-details {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+
+  .color-chip {
+    text-align: center;
+  }
+
+  .chip-block {
+    height: 48px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .chip-name {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--warm-white);
+    margin-bottom: 2px;
+  }
+
+  .chip-hex {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  .type-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 48px;
+  }
+
+  .type-block {
+    padding: 40px;
+    background: var(--dusk);
+    border: 1px solid rgba(201,146,58,0.1);
+  }
+
+  .type-specimen-display {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    color: var(--warm-white);
+    letter-spacing: 6px;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .type-specimen-serif {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-style: italic;
+    color: var(--sand);
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+
+  .type-meta {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .type-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  /* ── LOGO VARIATIONS ── */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    background: rgba(201,146,58,0.08);
+    margin-bottom: 40px;
+  }
+
+  .logo-cell {
+    padding: 48px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    min-height: 200px;
+  }
+
+  .logo-cell.dark  { background: var(--deep); }
+  .logo-cell.mid   { background: var(--smoke); }
+  .logo-cell.light { background: var(--warm-white); }
+
+  .logo-cell-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  .logo-cell.light .logo-cell-label { color: #8A7060; }
+
+  /* ── INLINE LOGO LOCKUP VARIANTS ── */
+  .lockup {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .lockup-wordmark {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 8px;
+  }
+
+  /* ── VOICE & TONE ── */
+  .voice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  .voice-card {
+    padding: 32px;
+    border: 1px solid rgba(201,146,58,0.12);
+    background: var(--dusk);
+    position: relative;
+  }
+
+  .voice-card.do { border-left: 3px solid var(--gold); }
+  .voice-card.dont { border-left: 3px solid #C94040; }
+
+  .voice-tag {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .voice-card.do .voice-tag { color: var(--gold); }
+  .voice-card.dont .voice-tag { color: #C94040; }
+
+  .voice-example {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--warm-white);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .voice-card.dont .voice-example { color: var(--muted); text-decoration: line-through; text-decoration-color: #C94040; }
+
+  .voice-note {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── CONTENT PILLARS ── */
+  .pillars-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: rgba(201,146,58,0.08);
+    margin-bottom: 48px;
+  }
+
+  .pillar {
+    background: var(--dusk);
+    padding: 36px 24px;
+    text-align: center;
+    transition: background 0.3s ease;
+    cursor: default;
+  }
+
+  .pillar:hover { background: var(--smoke); }
+
+  .pillar-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+
+  .pillar-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 3px;
+    color: var(--amber);
+    margin-bottom: 10px;
+  }
+
+  .pillar-pct {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: rgba(201,146,58,0.3);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .pillar-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── CAPTION TEMPLATES ── */
+  .caption-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .caption-card {
+    background: var(--dusk);
+    border: 1px solid rgba(201,146,58,0.1);
+    padding: 28px 32px;
+    position: relative;
+  }
+
+  .caption-type {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .caption-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--warm-white);
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .caption-tags {
+    font-size: 12px;
+    color: var(--accent-teal);
+    opacity: 0.7;
+  }
+
+  /* ── BIO ── */
+  .bio-block {
+    padding: 48px;
+    background: var(--dusk);
+    border: 1px solid rgba(201,146,58,0.15);
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .bio-block::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 120px;
+    color: rgba(201,146,58,0.1);
+    position: absolute;
+    top: -10px; left: 24px;
+    line-height: 1;
+  }
+
+  .bio-label {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .bio-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--warm-white);
+    line-height: 1.8;
+    max-width: 700px;
+  }
+
+  .bio-short {
+    font-size: 14px;
+    color: var(--sand);
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  /* ── POSTING CADENCE ── */
+  .cadence-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 48px;
+  }
+
+  .cadence-table th {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 12px 20px;
+    text-align: left;
+    border-bottom: 1px solid rgba(201,146,58,0.2);
+  }
+
+  .cadence-table td {
+    font-size: 13px;
+    color: var(--sand);
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  .cadence-table tr:hover td { background: rgba(201,146,58,0.03); }
+
+  .platform-badge {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid rgba(201,146,58,0.3);
+    color: var(--amber);
+    margin-right: 6px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 64px 40px;
+    border-top: 1px solid rgba(201,146,58,0.1);
+  }
+
+  .footer-wordmark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    letter-spacing: 12px;
+    color: rgba(201,146,58,0.3);
+    margin-bottom: 12px;
+  }
+
+  .footer-note {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── UTILITIES ── */
+  .gold { color: var(--gold); }
+  .amber { color: var(--amber); }
+  .teal { color: var(--accent-teal); }
+  .mt-sm { margin-top: 16px; }
+  .mt-md { margin-top: 32px; }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--deep); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <p class="hero-eyebrow">Brand Identity Guidelines — v1.0</p>
+
+  <div class="hero-logo-lockup">
+    <!-- PRIMARY ICON: Stylized triangle / compass rose suggesting the Triangle + warmth -->
+    <svg class="brand-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer ring -->
+      <circle cx="40" cy="40" r="38" stroke="#C9923A" stroke-width="1" stroke-dasharray="3 4" opacity="0.4"/>
+      <!-- Core triangle pointing up — the Bermuda Triangle reference, refined -->
+      <polygon points="40,10 68,62 12,62" stroke="#C9923A" stroke-width="1.5" fill="none" opacity="0.9"/>
+      <!-- Inner triangle (inverted) — creates star / compass feel -->
+      <polygon points="40,58 18,20 62,20" stroke="#E8B86D" stroke-width="0.8" fill="none" opacity="0.5"/>
+      <!-- Center dot -->
+      <circle cx="40" cy="40" r="3" fill="#C9923A"/>
+      <!-- Radial lines (compass) -->
+      <line x1="40" y1="2" x2="40" y2="14" stroke="#C9923A" stroke-width="1" opacity="0.6"/>
+      <line x1="40" y1="66" x2="40" y2="78" stroke="#C9923A" stroke-width="1" opacity="0.6"/>
+      <line x1="2" y1="40" x2="14" y2="40" stroke="#C9923A" stroke-width="1" opacity="0.6"/>
+      <line x1="66" y1="40" x2="78" y2="40" stroke="#C9923A" stroke-width="1" opacity="0.6"/>
+    </svg>
+    <div class="hero-wordmark">BERMUDA</div>
+  </div>
+
+  <p class="hero-tagline">Lost in the sound. Found on the floor.</p>
+  <p class="hero-sub">Tech House · Denver, CO · Est. 2025</p>
+  <div class="hero-divider"></div>
+</section>
+
+
+<!-- ══════════════ BRAND ESSENCE ══════════════ -->
+<section class="section">
+  <p class="section-label">01 — Brand Essence</p>
+  <h2 class="section-title">WHO WE ARE</h2>
+  <div class="divider-line"></div>
+
+  <div class="essence-grid">
+    <div class="essence-card">
+      <div class="essence-num">01</div>
+      <div class="essence-title">The Concept</div>
+      <p class="essence-body">Bermuda is named for the feeling of disappearing — where the outside world ceases to exist and only the music remains. Not the triangle as a place of danger, but as a place of beautiful, willing surrender. You go in, and you don't want to come back. That's the experience we create on every dancefloor.</p>
+    </div>
+    <div class="essence-card">
+      <div class="essence-num">02</div>
+      <div class="essence-title">The Sound</div>
+      <p class="essence-body">Tech house with soul. Driving, rhythmic, relentless — but warm underneath. We sit at the intersection of groove and euphoria. Tracks that make your hips move before your brain registers why. Sets that build slowly and pay off hard. The kind of music that feels like a memory you haven't made yet.</p>
+    </div>
+    <div class="essence-card">
+      <div class="essence-num">03</div>
+      <div class="essence-title">The Feeling</div>
+      <p class="essence-body">Euphoric and a little intoxicating. Warm like golden hour. Confident without being cold. We're the DJs who are genuinely having the time of their lives behind the decks — and you feel that. The energy is infectious. The crowd is the performance. We play with them, not at them.</p>
+    </div>
+    <div class="essence-card">
+      <div class="essence-num">04</div>
+      <div class="essence-title">The Personality</div>
+      <p class="essence-body">Three real people. Witty, self-aware, and a little audacious. We don't take ourselves too seriously — but we take our craft very seriously. Think John Summit's rawness, filtered through a warm tropical lens. We post like friends, perform like professionals, and build like a brand.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ COLOR PALETTE ══════════════ -->
+<section class="section" style="padding-top: 0;">
+  <p class="section-label">02 — Color System</p>
+  <h2 class="section-title">PALETTE</h2>
+  <div class="divider-line"></div>
+
+  <div class="palette-row">
+    <div class="swatch" style="background:#0D0705;">
+      <div class="swatch-label">Deep Black</div>
+    </div>
+    <div class="swatch" style="background:#1A0F0A;">
+      <div class="swatch-label">Dusk</div>
+    </div>
+    <div class="swatch" style="background:#2E1F15;">
+      <div class="swatch-label">Smoke</div>
+    </div>
+    <div class="swatch" style="background:#C9923A;">
+      <div class="swatch-label">Gold</div>
+    </div>
+    <div class="swatch" style="background:#E8B86D;">
+      <div class="swatch-label">Amber</div>
+    </div>
+    <div class="swatch" style="background:#D4B896;">
+      <div class="swatch-label">Sand</div>
+    </div>
+    <div class="swatch" style="background:#F5EDE0;">
+      <div class="swatch-label">Warm White</div>
+    </div>
+    <div class="swatch" style="background:#3ECFCF;">
+      <div class="swatch-label">Teal Accent</div>
+    </div>
+  </div>
+
+  <div class="palette-details">
+    <div class="color-chip">
+      <div class="chip-block" style="background:#0D0705;"></div>
+      <div class="chip-name">Deep</div>
+      <div class="chip-hex">#0D0705</div>
+    </div>
+    <div class="color-chip">
+      <div class="chip-block" style="background:#C9923A;"></div>
+      <div class="chip-name">Gold</div>
+      <div class="chip-hex">#C9923A</div>
+    </div>
+    <div class="color-chip">
+      <div class="chip-block" style="background:#E8B86D;"></div>
+      <div class="chip-name">Amber</div>
+      <div class="chip-hex">#E8B86D</div>
+    </div>
+    <div class="color-chip">
+      <div class="chip-block" style="background:#D4B896;"></div>
+      <div class="chip-name">Sand</div>
+      <div class="chip-hex">#D4B896</div>
+    </div>
+    <div class="color-chip">
+      <div class="chip-block" style="background:#3ECFCF; border-color: rgba(255,255,255,0.1);"></div>
+      <div class="chip-name">Teal</div>
+      <div class="chip-hex">#3ECFCF</div>
+    </div>
+  </div>
+
+  <div class="mt-md" style="padding: 24px 32px; background: var(--dusk); border-left: 3px solid var(--gold);">
+    <p class="section-label" style="margin-bottom: 8px;">Color Usage Rules</p>
+    <p style="font-size: 13px; color: var(--sand); line-height: 1.8;">
+      <strong style="color: var(--warm-white);">90% of the time:</strong> Deep black backgrounds with Gold or Amber text/icons. This is your signature look.<br>
+      <strong style="color: var(--warm-white);">Teal accent</strong> is used sparingly — booking CTAs, highlights, special announcements only. Never as a primary color.<br>
+      <strong style="color: var(--warm-white);">Warm White</strong> is for body copy and secondary elements on dark backgrounds. Never use pure #FFFFFF — it's too harsh.<br>
+      <strong style="color: var(--warm-white);">No light-mode posts.</strong> Every piece of content lives on a dark, rich background. Always.
+    </p>
+  </div>
+</section>
+
+
+<!-- ══════════════ TYPOGRAPHY ══════════════ -->
+<section class="section" style="padding-top: 0;">
+  <p class="section-label">03 — Typography</p>
+  <h2 class="section-title">TYPE SYSTEM</h2>
+  <div class="divider-line"></div>
+
+  <div class="type-showcase">
+    <div class="type-block">
+      <div class="type-meta">Display / Headers</div>
+      <div class="type-specimen-display">BERMUDA</div>
+      <div class="type-meta" style="margin-top: 8px;">Bebas Neue — Free on Google Fonts</div>
+      <p class="type-desc">All caps. Wide tracking. Used for the wordmark, section headers, event names, and any large display text. Never sentence case. Always commanding.</p>
+    </div>
+    <div class="type-block">
+      <div class="type-meta">Editorial / Accent</div>
+      <div class="type-specimen-serif">Lost in the sound.</div>
+      <div class="type-meta" style="margin-top: 8px;">Cormorant Garamond Italic — Free on Google Fonts</div>
+      <p class="type-desc">Italic only. Used for taglines, captions, pull quotes, and mood statements. The contrast between Bebas and Cormorant is your visual signature — loud and quiet together.</p>
+    </div>
+  </div>
+
+  <div class="type-block" style="padding: 32px 40px;">
+    <div class="type-meta">Body / UI Copy</div>
+    <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--sand); line-height: 1.9; font-weight: 300; margin-bottom: 12px;">DM Sans Light — Clean, modern, unobtrusive. Used for bios, captions longer than one line, booking info, and any functional copy. Always light weight (300). Never bold in body copy.</p>
+    <div class="type-meta" style="margin-top: 0;">DM Sans — Free on Google Fonts</div>
+  </div>
+</section>
+
+
+<!-- ══════════════ LOGO SYSTEM ══════════════ -->
+<section class="section" style="padding-top: 0;">
+  <p class="section-label">04 — Logo System</p>
+  <h2 class="section-title">LOGO VARIATIONS</h2>
+  <div class="divider-line"></div>
+
+  <div class="logo-grid">
+
+    <!-- PRIMARY: Dark BG, Gold -->
+    <div class="logo-cell dark">
+      <div class="lockup">
+        <svg width="40" height="40" viewBox="0 0 80 80" fill="none">
+          <circle cx="40" cy="40" r="38" stroke="#C9923A" stroke-width="1" stroke-dasharray="3 4" opacity="0.4"/>
+          <polygon points="40,10 68,62 12,62" stroke="#C9923A" stroke-width="1.5" fill="none" opacity="0.9"/>
+          <polygon points="40,58 18,20 62,20" stroke="#E8B86D" stroke-width="0.8" fill="none" opacity="0.5"/>
+          <circle cx="40" cy="40" r="3" fill="#C9923A"/>
+          <line x1="40" y1="2" x2="40" y2="14" stroke="#C9923A" stroke-width="1" opacity="0.6"/>
+          <line x1="40" y1="66" x2="40" y2="78" stroke="#C9923A" stroke-width="1" opacity="0.6"/>
+          <line x1="2" y1="40" x2="14" y2="40" stroke="#C9923A" stroke-width="1" opacity="0.6"/>
+          <line x1="66" y1="40" x2="78" y2="40" stroke="#C9923A" stroke-width="1" opacity="0.6"/>
+        </svg>
+        <span class="lockup-wordmark" style="font-size: 28px; color: #F5EDE0;">BERMUDA</span>
+      </div>
+      <span class="logo-cell-label">Primary — Dark</span>
+    </div>
+
+    <!-- SECONDARY: Mid BG, Amber -->
+    <div class="logo-cell mid">
+      <div class="lockup">
+        <svg width="40" height="40" viewBox="0 0 80 80" fill="none">
+          <circle cx="40" cy="40" r="38" stroke="#E8B86D" stroke-width="1" stroke-dasharray="3 4" opacity="0.4"/>
+          <polygon points="40,10 68,62 12,62" stroke="#E8B86D" stroke-width="1.5" fill="none" opacity="0.9"/>
+          <polygon points="40,58 18,20 62,20" stroke="#D4B896" stroke-width="0.8" fill="none" opacity="0.5"/>
+          <circle cx="40" cy="40" r="3" fill="#E8B86D"/>
+          <line x1="40" y1="2" x2="40" y2="14" stroke="#E8B86D" stroke-width="1" opacity="0.6"/>
+          <line x1="40" y1="66" x2="40" y2="78" stroke="#E8B86D" stroke-width="1" opacity="0.6"/>
+          <line x1="2" y1="40" x2="14" y2="40" stroke="#E8B86D" stroke-width="1" opacity="0.6"/>
+          <line x1="66" y1="40" x2="78" y2="40" stroke="#E8B86D" stroke-width="1" opacity="0.6"/>
+        </svg>
+        <span class="lockup-wordmark" style="font-size: 28px; color: #F5EDE0;">BERMUDA</span>
+      </div>
+      <span class="logo-cell-label">Secondary — Warm Dark</span>
+    </div>
+
+    <!-- REVERSED: Light BG, Dark -->
+    <div class="logo-cell light">
+      <div class="lockup">
+        <svg width="40" height="40" viewBox="0 0 80 80" fill="none">
+          <circle cx="40" cy="40" r="38" stroke="#1A0F0A" stroke-width="1" stroke-dasharray="3 4" opacity="0.4"/>
+          <polygon points="40,10 68,62 12,62" stroke="#1A0F0A" stroke-width="1.5" fill="none" opacity="0.9"/>
+          <polygon points="40,58 18,20 62,20" stroke="#C9923A" stroke-width="0.8" fill="none" opacity="0.7"/>
+          <circle cx="40" cy="40" r="3" fill="#C9923A"/>
+          <line x1="40" y1="2" x2="40" y2="14" stroke="#1A0F0A" stroke-width="1" opacity="0.4"/>
+          <line x1="40" y1="66" x2="40" y2="78" stroke="#1A0F0A" stroke-width="1" opacity="0.4"/>
+          <line x1="2" y1="40" x2="14" y2="40" stroke="#1A0F0A" stroke-width="1" opacity="0.4"/>
+          <line x1="66" y1="40" x2="78" y2="40" stroke="#1A0F0A" stroke-width="1" opacity="0.4"/>
+        </svg>
+        <span class="lockup-wordmark" style="font-size: 28px; color: #1A0F0A;">BERMUDA</span>
+      </div>
+      <span class="logo-cell-label" style="color: #8A7060;">Reversed — Light Backgrounds</span>
+    </div>
+
+    <!-- ICON ONLY -->
+    <div class="logo-cell dark">
+      <svg width="64" height="64" viewBox="0 0 80 80" fill="none">
+        <circle cx="40" cy="40" r="38" stroke="#C9923A" stroke-width="1" stroke-dasharray="3 4" opacity="0.4"/>
+        <polygon points="40,10 68,62 12,62" stroke="#C9923A" stroke-width="1.5" fill="none" opacity="0.9"/>
+        <polygon points="40,58 18,20 62,20" stroke="#E8B86D" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <circle cx="40" cy="40" r="3" fill="#C9923A"/>
+        <line x1="40" y1="2" x2="40" y2="14" stroke="#C9923A" stroke-width="1" opacity="0.6"/>
+        <line x1="40" y1="66" x2="40" y2="78" stroke="#C9923A" stroke-width="1" opacity="0.6"/>
+        <line x1="2" y1="40" x2="14" y2="40" stroke="#C9923A" stroke-width="1" opacity="0.6"/>
+        <line x1="66" y1="40" x2="78" y2="40" stroke="#C9923A" stroke-width="1" opacity="0.6"/>
+      </svg>
+      <span class="logo-cell-label">Icon Only — Profile / Avatar</span>
+    </div>
+
+    <!-- WORDMARK ONLY -->
+    <div class="logo-cell mid">
+      <span class="lockup-wordmark" style="font-size: 32px; color: #C9923A; letter-spacing: 10px;">BERMUDA</span>
+      <span class="logo-cell-label">Wordmark Only</span>
+    </div>
+
+    <!-- STACKED -->
+    <div class="logo-cell dark">
+      <div style="text-align: center;">
+        <svg width="36" height="36" viewBox="0 0 80 80" fill="none" style="display: block; margin: 0 auto 8px;">
+          <polygon points="40,10 68,62 12,62" stroke="#C9923A" stroke-width="1.5" fill="none"/>
+          <polygon points="40,58 18,20 62,20" stroke="#E8B86D" stroke-width="0.8" fill="none" opacity="0.6"/>
+          <circle cx="40" cy="40" r="3" fill="#C9923A"/>
+        </svg>
+        <span class="lockup-wordmark" style="font-size: 24px; color: #F5EDE0; letter-spacing: 8px; display: block;">BERMUDA</span>
+        <span style="font-family: 'Cormorant Garamond', serif; font-size: 11px; font-style: italic; color: var(--muted); letter-spacing: 3px; display: block; margin-top: 4px;">Tech House</span>
+      </div>
+      <span class="logo-cell-label">Stacked — Event Flyers</span>
+    </div>
+
+  </div>
+
+  <div style="padding: 20px 32px; background: var(--dusk); border-left: 3px solid rgba(201,146,58,0.4);">
+    <p style="font-size: 12px; color: var(--muted); line-height: 1.8;">
+      <strong style="color: var(--sand);">Minimum clear space:</strong> Always maintain padding equal to the height of the "B" in BERMUDA around the full lockup. &nbsp;|&nbsp;
+      <strong style="color: var(--sand);">Never:</strong> Stretch, rotate, recolor outside the palette, add drop shadows, or use on busy photo backgrounds without a dark overlay. &nbsp;|&nbsp;
+      <strong style="color: var(--sand);">Profile photo:</strong> Use Icon Only on the deep black background.
+    </p>
+  </div>
+</section>
+
+
+<!-- ══════════════ VOICE & TONE ══════════════ -->
+<section class="section" style="padding-top: 0;">
+  <p class="section-label">05 — Voice & Tone</p>
+  <h2 class="section-title">HOW WE TALK</h2>
+  <div class="divider-line"></div>
+
+  <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 40px;">
+    <div style="text-align: center; padding: 24px 16px; background: var(--dusk); border-top: 2px solid var(--gold);">
+      <div style="font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px; color: var(--amber); margin-bottom: 8px;">WITTY</div>
+      <div style="font-size: 12px; color: var(--muted); line-height: 1.6;">Self-aware humor. Never try-hard. Quick and clever, not cringe.</div>
+    </div>
+    <div style="text-align: center; padding: 24px 16px; background: var(--dusk); border-top: 2px solid var(--gold);">
+      <div style="font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px; color: var(--amber); margin-bottom: 8px;">WARM</div>
+      <div style="font-size: 12px; color: var(--muted); line-height: 1.6;">Community-forward. We celebrate the crowd, the culture, the scene.</div>
+    </div>
+    <div style="text-align: center; padding: 24px 16px; background: var(--dusk); border-top: 2px solid var(--gold);">
+      <div style="font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px; color: var(--amber); margin-bottom: 8px;">CONFIDENT</div>
+      <div style="font-size: 12px; color: var(--muted); line-height: 1.6;">No apologies, no over-explaining. We know who we are.</div>
+    </div>
+    <div style="text-align: center; padding: 24px 16px; background: var(--dusk); border-top: 2px solid var(--gold);">
+      <div style="font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px; color: var(--amber); margin-bottom: 8px;">REAL</div>
+      <div style="font-size: 12px; color: var(--muted); line-height: 1.6;">Three actual humans. We share the behind the scenes, the fails, the fire.</div>
+    </div>
+  </div>
+
+  <div class="voice-grid">
+    <div class="voice-card do">
+      <div class="voice-tag">✓ Do say</div>
+      <div class="voice-example">"We don't make playlists. We make moments."</div>
+      <div class="voice-note">Bold, specific, memorable. Sounds like a brand.</div>
+    </div>
+    <div class="voice-card dont">
+      <div class="voice-tag">✗ Don't say</div>
+      <div class="voice-example">"We are a DJ group that plays tech house music in Denver Colorado."</div>
+      <div class="voice-note">Functional but forgettable. No personality, no hook.</div>
+    </div>
+    <div class="voice-card do">
+      <div class="voice-tag">✓ Do say</div>
+      <div class="voice-example">"You went in for a quick drink. You left at 2am. You're welcome."</div>
+      <div class="voice-note">Witty, confident, speaks to the experience. Shareable.</div>
+    </div>
+    <div class="voice-card dont">
+      <div class="voice-tag">✗ Don't say</div>
+      <div class="voice-example">"Had an amazing time tonight! Thanks to everyone who came out! 🙏🙏🙏"</div>
+      <div class="voice-note">Generic. Every DJ on the planet posts this. Zero differentiation.</div>
+    </div>
+    <div class="voice-card do">
+      <div class="voice-tag">✓ Do say</div>
+      <div class="voice-example">"The set was supposed to be 90 minutes. The crowd had other plans."</div>
+      <div class="voice-note">Tells a story. Implies demand. Makes people wish they were there.</div>
+    </div>
+    <div class="voice-card dont">
+      <div class="voice-tag">✗ Don't say</div>
+      <div class="voice-example">"Please follow and like for more content! Hit the notification bell!"</div>
+      <div class="voice-note">Desperate energy. Build pull, not push. Let the content do the work.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ CONTENT PILLARS ══════════════ -->
+<section class="section" style="padding-top: 0;">
+  <p class="section-label">06 — Content Strategy</p>
+  <h2 class="section-title">CONTENT PILLARS</h2>
+  <div class="divider-line"></div>
+
+  <div class="pillars-row">
+    <div class="pillar">
+      <div class="pillar-icon">🎛️</div>
+      <div class="pillar-name">The Music</div>
+      <div class="pillar-pct">35%</div>
+      <div class="pillar-desc">Mix clips, transition reels, track reactions, SoundCloud drops. The product. Make it visual and punchy — 15 to 30 seconds max.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">🎬</div>
+      <div class="pillar-name">Behind The Drop</div>
+      <div class="pillar-pct">30%</div>
+      <div class="pillar-desc">Setup process, soundcheck chaos, pre-show rituals, candid moments. This is where the personality lives. Raw and real beats polished every time.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">🌐</div>
+      <div class="pillar-name">Culture & Taste</div>
+      <div class="pillar-pct">20%</div>
+      <div class="pillar-desc">Tracks you're obsessed with, events you'd go to, artists you respect. Position yourselves as tastemakers, not just performers.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">🏆</div>
+      <div class="pillar-name">Social Proof</div>
+      <div class="pillar-pct">15%</div>
+      <div class="pillar-desc">Gig announcements, recaps, crowd energy, any press or features. Every gig — no matter the size — gets documented. A birthday party counts.</div>
+    </div>
+  </div>
+
+  <!-- POSTING CADENCE -->
+  <p class="section-label" style="margin-top: 48px; margin-bottom: 16px;">Posting Cadence — First 60 Days</p>
+  <table class="cadence-table">
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Platform</th>
+        <th>Content Type</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="color: var(--amber); font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px;">MON</td>
+        <td><span class="platform-badge">TikTok</span></td>
+        <td>Short mix clip / transition reel (15–30s)</td>
+        <td>Use trending audio + your own drop. Hook in first 2 seconds.</td>
+      </tr>
+      <tr>
+        <td style="color: var(--amber); font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px;">WED</td>
+        <td><span class="platform-badge">IG</span><span class="platform-badge">TikTok</span></td>
+        <td>Behind the scenes / personality content</td>
+        <td>Film while you practice. Reaction clips. Candid setup.</td>
+      </tr>
+      <tr>
+        <td style="color: var(--amber); font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px;">FRI</td>
+        <td><span class="platform-badge">IG</span></td>
+        <td>Culture / taste post or gig promo</td>
+        <td>Static graphic or reel. Gig promos always on Friday — max weekend reach.</td>
+      </tr>
+      <tr>
+        <td style="color: var(--amber); font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px;">SUN</td>
+        <td><span class="platform-badge">SoundCloud</span><span class="platform-badge">YT</span></td>
+        <td>Full mix drop (monthly) or mix clip</td>
+        <td>Full mixes go on SoundCloud + YouTube. Share the link via IG story.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+<!-- ══════════════ CAPTION TEMPLATES ══════════════ -->
+<section class="section" style="padding-top: 0;">
+  <p class="section-label">07 — Caption Templates</p>
+  <h2 class="section-title">READY TO POST</h2>
+  <div class="divider-line"></div>
+
+  <div class="caption-cards">
+    <div class="caption-card">
+      <div class="caption-type">Mix Drop</div>
+      <div class="caption-text">"New mix is up. 60 minutes, no skips, zero regrets. Link in bio — or just press play and disappear for a while."</div>
+      <div class="caption-tags">#techhouse #housemusic #dj #bermuda #denvermusic</div>
+    </div>
+    <div class="caption-card">
+      <div class="caption-type">Gig Announcement</div>
+      <div class="caption-text">"We're playing [VENUE] on [DATE]. Doors at [TIME]. Come get lost with us."</div>
+      <div class="caption-tags">#bermudadjgroup #denver #techhouse #[venue]</div>
+    </div>
+    <div class="caption-card">
+      <div class="caption-type">Behind The Scenes</div>
+      <div class="caption-text">"Soundcheck chaos, wrong cable, no monitor, set starts in 20. Totally fine. We're totally fine."</div>
+      <div class="caption-tags">#djlife #behindthescenes #techhouse #realones</div>
+    </div>
+    <div class="caption-card">
+      <div class="caption-type">Post-Gig Recap</div>
+      <div class="caption-text">"Last night was one of those sets. You know the ones. Thank you [VENUE] — we'll be back."</div>
+      <div class="caption-tags">#bermuda #techhouse #denver #gigreview</div>
+    </div>
+    <div class="caption-card">
+      <div class="caption-type">Track / Culture</div>
+      <div class="caption-text">"This track has been living rent-free in every set we've played this month. @[artist] just gets it."</div>
+      <div class="caption-tags">#nowplaying #techhouse #djpick #housemusic</div>
+    </div>
+    <div class="caption-card">
+      <div class="caption-type">Intro / Awareness</div>
+      <div class="caption-text">"Three DJs. One name. A very specific problem with stopping early. Welcome to Bermuda — get comfortable, you're staying a while."</div>
+      <div class="caption-tags">#bermuda #newdj #techhouse #denver #introduction</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ BIO ══════════════ -->
+<section class="section" style="padding-top: 0;">
+  <p class="section-label">08 — Platform Bios</p>
+  <h2 class="section-title">WHO WE ARE IN WORDS</h2>
+  <div class="divider-line"></div>
+
+  <div class="bio-block" style="margin-bottom: 24px;">
+    <div class="bio-label">Instagram Bio (150 char max)</div>
+    <div class="bio-text">Tech house trio · Denver, CO<br>We make you stay longer than you planned<br>🔺 Bookings → bookbermuda@gmail.com</div>
+  </div>
+
+  <div class="bio-block" style="margin-bottom: 24px;">
+    <div class="bio-label">SoundCloud / YouTube Long Bio</div>
+    <p class="bio-short">Bermuda is a tech house DJ trio based in Denver, Colorado. Named for the feeling of disappearing — the moment you stop checking your phone, stop watching the clock, and surrender entirely to the music. Our sets live at the intersection of groove and euphoria: driving enough to keep you moving, warm enough to make you feel something. We play clubs, festivals, and private events across Colorado and beyond. For bookings: bookbermuda@gmail.com</p>
+  </div>
+
+  <div class="bio-block">
+    <div class="bio-label">Booking Pitch (one-liner for outreach)</div>
+    <div class="bio-text">"Bermuda is a Denver-based tech house trio known for high-energy sets that keep dancefloors moving from open to close."</div>
+  </div>
+</section>
+
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="footer">
+  <div class="footer-wordmark">BERMUDA</div>
+  <p class="footer-note">Brand Guidelines v1.0 — 2025 — bookbermuda@gmail.com</p>
+  <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--muted); font-size: 16px; margin-top: 16px;">Lost in the sound. Found on the floor.</p>
+</footer>
+
+</body>
+</html>
